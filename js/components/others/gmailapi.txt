@@ -1,0 +1,40 @@
+Server API key
+Here is your API key
+AIzaSyC2OMYNLdaXXL2urkj3qow4T_XF5w7GkS4
+
+
+
+
+
+
+Browser API Key
+
+API key
+Here is your API key
+AIzaSyDYFuKK_FTtU5pmSnyn9ea9kZLq33LeMM8
+
+
+
+
+
+
+
+oAth cre
+
+
+product name:yeshwa
+
+OAuth client
+Here is your client ID
+1017099668494-hvjbqoi54qfo121el6vibhqjak5tgdvs.apps.googleusercontent.com
+Here is your client secret
+96L2aiglAp3FQ2KUpLEcsEpY
+
+
+
+
+
+
+
+
+

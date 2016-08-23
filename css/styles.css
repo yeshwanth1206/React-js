@@ -1,0 +1,140 @@
+/*
+
+My Custom CSS
+=============
+
+Author:  Brad Hussey
+Updated: August 2013
+Notes:	 Hand coded for Udemy.com
+
+*/
+
+
+/* --------------------------------------
+   Layout
+   -------------------------------------- */
+   
+
+#authorize-button{
+  margin-top: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#grid8{
+  background-color: yellow
+}
+#grid4{
+  background-color: red
+}
+#left{
+  background-color: blue
+}
+#right{
+  background-color: violet
+}
+
+
+#navbar_row{
+  margin-top: 60px;
+  background-color: black;
+}
+
+
+
+#three_col_heading {
+   margin-top: 80px;
+}
+#three_col{
+   text-align: center;
+}
+#three_col img{
+   margin-bottom: 20px;
+}
+.jumbotron h1 {
+  color: orange;
+}
+.jumbotron h1 i{
+  color: orange;
+}
+.jumbotron p{
+  color: orange;
+}
+#jumbo {
+   background: url("../../images/ajith_medium.jpg") top center no-repeat;
+}
+
+
+
+
+
+/* --------------------------------------
+   Typography
+   -------------------------------------- */
+
+
+
+/* --------------------------------------
+   Navbar
+   -------------------------------------- */
+   #searchinput{
+   width: 200px;
+  }
+   
+   .navbar{
+    background-color: white;
+    border-color: #E7E7E7;
+}
+/* --------------------------------------
+   Carousel
+   -------------------------------------- */
+
+
+
+/* --------------------------------------
+   Global Styles
+   -------------------------------------- */
+  
+   
+
+/* --------------------------------------
+   Media Queries
+   -------------------------------------- */
+
+/* Portrait & landscape phone */
+@media (max-width: 480px) {
+  /*#jumbo {
+   background: url("../../images/ajith_very_low.jpg") top center no-repeat;
+}*/
+	
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+  
+	#jumbo {
+   background:  url("../../images/ajith_very_low.jpg") top center no-repeat;
+}
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  #jumbo {
+   background: url("../../images/ajith_large.jpg") top center no-repeat;
+}
+	
+}

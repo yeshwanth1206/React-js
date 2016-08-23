@@ -1,0 +1,127 @@
+var ParsedData=[];
+        var label={
+             "labels": [
+              {
+               "id": "CATEGORY_PERSONAL",
+               "name": "CATEGORY_PERSONAL",
+               "type": "system"
+              },
+              {
+               "id": "CATEGORY_SOCIAL",
+               "name": "CATEGORY_SOCIAL",
+               "messageListVisibility": "show",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "Label_3",
+               "name": "pay roll",
+               "type": "user"
+              },
+              {
+               "id": "Label_1",
+               "name": "[Imap]/Trash",
+               "type": "user"
+              },
+              {
+               "id": "CATEGORY_FORUMS",
+               "name": "CATEGORY_FORUMS",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "Label_4",
+               "name": "Original Certitificates",
+               "type": "user"
+              },
+              {
+               "id": "Label_2",
+               "name": "[Imap]/Sent",
+               "type": "user"
+              },
+              {
+               "id": "IMPORTANT",
+               "name": "IMPORTANT",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "CATEGORY_UPDATES",
+               "name": "CATEGORY_UPDATES",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "CHAT",
+               "name": "CHAT",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "SENT",
+               "name": "SENT",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "INBOX",
+               "name": "INBOX",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "TRASH",
+               "name": "TRASH",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelHide",
+               "type": "system"
+              },
+              {
+               "id": "CATEGORY_PROMOTIONS",
+               "name": "CATEGORY_PROMOTIONS",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "DRAFT",
+               "name": "DRAFT",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "SPAM",
+               "name": "SPAM",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "STARRED",
+               "name": "STARRED",
+               "messageListVisibility": "hide",
+               "labelListVisibility": "labelShow",
+               "type": "system"
+              },
+              {
+               "id": "UNREAD",
+               "name": "UNREAD",
+               "type": "system"
+              }
+             ]
+            }
+        console.log(label.labels.length);
+        for(var i=0;i<label.labels.length;i++)
+        {
+               var id = label.labels[i].id;
+                var name = label.labels[i].name;
+                ParsedData.push({"id":id,"name":name});
+            }
+            console.log(ParsedData);
