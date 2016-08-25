@@ -1,6 +1,7 @@
 var React=require("react");
 
-var LabelComponent=React.createClass({
+var LabelComponent=React.createClass({  
+
     render:function(){
         return(
             <div>
