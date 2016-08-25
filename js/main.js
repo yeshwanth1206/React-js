@@ -30,11 +30,11 @@ var MainComponent=React.createClass({
                             <div className="row" >
                                 <div className="col-md-12">
                                     <div className="row" >
-                                        <div className="col-md-4" id="grid8">
+                                        <div className="col-md-4" >
                                             
                                         </div>
 
-                                        <div className="col-md-8" id="grid4">
+                                        <div className="col-md-8" >
                                             
                                         </div>
                                     </div>

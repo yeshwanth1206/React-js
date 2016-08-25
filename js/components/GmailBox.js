@@ -9,7 +9,7 @@ var loadedData = false;
 var GmailBox = React.createClass({
  getInitialState: function()
    {
-     return({allLabelsData:[]});
+     return({allLabelsData:[], allMsge:[], MsgDetail:[],inbox:[] });
    },
  gmailLogin: function()
  {
@@ -83,8 +83,72 @@ var GmailBox = React.createClass({
         console.error(err.toString());
       }.bind(this)
    });
+ },
+
+// encode: function(subject) {
+//      var enc_subject = Utilities.base64Encode(subject, Utilities.Charset.UTF_8);
+//      return '=?utf-8?B?' + enc_subject + '?=';
+//    },
+
+
+
+
+
+ inbox: function()
+ {
+     var accessToken = localStorage.getItem('gToken');
+   
+     $.ajax({
+      url: 'https://www.googleapis.com/gmail/v1/users/yeshwanth1206%40gmail.com/messages?labelIds=INBOX&maxResults=10&key={AIzaSyDNY4Mj3askiSHVgWbHmMBCs_xpH7GLNgI}',      
+      dataType: 'json',
+      type: 'GET',
+      beforeSend: function (request)
+      {
+        request.setRequestHeader("Authorization", "Bearer "+accessToken);
+      },
+      success: function(msg)
+      {
+        var dply_data = msg.messages
+        for(var key in dply_data)
+        {
+          var id = dply_data[key].id;
+          this.dply_Inbox_Msg(id);
+        }
+        this.setState({allMsge:this.state.MsgDetail});
+        this.state.MsgDetail=[];
+        console.log(id);
+      }.bind(this),
+        error: function(xhr, status, err) {
+        console.error(err.toString());
+      }.bind(this)
+   });
 
  },
+
+
+
+ dply_Inbox_Msg: function(msg_id){
+  var accessToken = localStorage.getItem('gToken');
+  $.ajax({
+   url: 'https://www.googleapis.com/gmail/v1/users/yeshwanth1206%40gmail.com/messages/'+msg_id+'?key={AIzaSyDNY4Mj3askiSHVgWbHmMBCs_xpH7GLNgI}',
+   dataType: 'json',
+   type: 'GET',
+   beforeSend: function (request)
+   {
+     request.setRequestHeader("Authorization", "Bearer "+accessToken);
+   },
+   success: function(inbox)
+   {
+     this.state.MsgDetail.push(inbox);
+      this.setState({inbox:inbox.messages});
+   }.bind(this),
+    async:false,
+     error: function(xhr, status, err) {
+     console.error(err.toString());
+   }.bind(this)
+
+});
+},
 
 
  render:function()
@@ -94,7 +158,7 @@ var GmailBox = React.createClass({
 
    if(loadedData){
      leftPanel =  <Component2left allLabelsData={this.state.allLabelsData} />
-     rightPanel='  Work In Progress..........';
+     rightPanel=  <Component3right allMsge={this.state.allMsge}/> 
      
    }
 
@@ -103,17 +167,18 @@ var GmailBox = React.createClass({
            <div className="container-fluid">
              <div className="row">
                  <div className="col-lg-1">
-                  <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-primary pull-left">LogIn</button>
+                  <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-primary pull-left">LogIn12345</button>
                   </div>
                   <div className="col-lg-8 pull-right">
                     <h2>ReactMails</h2>
+                    <button id="authorize-button" onClick={this.inbox} className="btn btn-primary pull-left">Inbox1234</button>
                   </div>
               </div>
                <div className="row">
-                 <div className="col-lg-2">
+                 <div className="col-lg-4">
                     {leftPanel}
                   </div>
-                 <div className="col-lg-10">
+                 <div className="col-lg-8">
                  {rightPanel}
                  </div>
                </div>

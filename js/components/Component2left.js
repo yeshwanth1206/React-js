@@ -8,15 +8,16 @@ var Component2left=React.createClass({
 render:function(){
         var idName = this.props.allLabelsData.map(function(id_and_name) {
            return (
+            
                   <LabelComponent id={id_and_name.id} name={id_and_name.name} />
              );
        });
 
         return(
-            <div>
+            <div >
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-12" id="grid8">
                             <h3 className="text-center">
                                 Left Panel
                             </h3>
