@@ -11,22 +11,22 @@
      {
         var msgSubject,msgFrom,mgsDate;
 
-        for(var headerIndex=0; headerIndex <msg.payload.headers.length;headerIndex++)
+        for(var HI=0; HI <msg.payload.headers.length;HI++)
             {
 
-                if(msg.payload.headers[headerIndex].name=='Subject')
+                if(msg.payload.headers[HI].name=='Subject')
                 {
-                    msgSubject=msg.payload.headers[headerIndex].value;
+                    msgSubject=msg.payload.headers[HI].value;
                 }
-                if(msg.payload.headers[headerIndex].name=='From')
+                if(msg.payload.headers[HI].name=='From')
                 {
-                     msgFrom=msg.payload.headers[headerIndex].value;
+                     msgFrom=msg.payload.headers[HI].value;
                      var fields= msgFrom.split(/</);
                      msgFrom=fields[0];
                 }
-                if(msg.payload.headers[headerIndex].name=='Date')
+                if(msg.payload.headers[HI].name=='Date')
                 {
-                    mgsDate =msg.payload.headers[headerIndex].value;
+                    mgsDate =msg.payload.headers[HI].value;
                 }
 
             }
