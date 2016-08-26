@@ -5,8 +5,7 @@ var GmailSentChild = React.createClass({
 
        <tr>
          <td>{this.props.msgFrom}</td>
-         <td>{this.props.msgReceived}</td>
-         <td>{this.props.mgsDate}</td>
+          <td>{this.props.msgDate}</td>
        </tr>
        
      );

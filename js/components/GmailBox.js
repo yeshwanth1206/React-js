@@ -5,12 +5,13 @@ var Component1A=require("./Component1A");
 var Component2left=require("./Component2left");
 var Component3right=require("./Component3right");
 var Component4Sent=require("./Component4Sent");
+var ComposeComponent=require("./ComposeComponent")
 // var LeftSideBar = require('./LeftSideBar');
 var loadedData = false;
 var GmailBox = React.createClass({
  getInitialState: function()
    {
-     return({allLabelsData:[], allMsge:[], MsgDetail:[],inbox:[],sent_allMsge:[], sent_MsgDetail:[],sent_items:[] , labelId:''});
+     return({ allLabelsData:[], mail:[] });
    },
 
 
@@ -61,7 +62,7 @@ var GmailBox = React.createClass({
        }
    }, 500);
    this.allLabels();
-   this.inbox;
+   this.mail;
    this.sent_items;
  },
 
@@ -98,7 +99,7 @@ var GmailBox = React.createClass({
 
 
 
- inbox: function(labelId)
+ labelbasedid: function()
  {
      var accessToken = localStorage.getItem('gToken');
    
@@ -112,15 +113,17 @@ var GmailBox = React.createClass({
       },
       success: function(msg)
       {
-        var dply_data = msg.messages
-        for(var key in dply_data)
-        {
-          var id = dply_data[key].id;
-          this.dply_Inbox_Msg(id);
-        }
-        this.setState({allMsge:this.state.MsgDetail});
-        this.state.MsgDetail=[];
-        console.log(id);
+        this.setState({mail:msg.messages});
+        loadedData=true;
+        // var dply_data = msg.messages
+        // for(var key in dply_data)
+        // {
+        //   var id = dply_data[key].id;
+        //   this.display_All_Msg(id);
+        // }
+        // this.setState({allMsge:this.state.MsgDetail});
+        // this.state.MsgDetail=[];
+        // console.log(id);
       }.bind(this),
         error: function(xhr, status, err) {
         console.error(err.toString());
@@ -130,21 +133,23 @@ var GmailBox = React.createClass({
  },
 
 
-
- dply_Inbox_Msg: function(msg_id){
+ display_All_Msg: function(msg_id){
+  var idd=msg_id;
+  console.log(idd);
   var accessToken = localStorage.getItem('gToken');
   $.ajax({
-   url: 'https://www.googleapis.com/gmail/v1/users/yeshwanth1206%40gmail.com/messages/'+msg_id+'?key={AIzaSyDNY4Mj3askiSHVgWbHmMBCs_xpH7GLNgI}',
+   url: 'https://www.googleapis.com/gmail/v1/users/yeshwanth1206%40gmail.com/messages?labelIds='+idd+'&key={AIzaSyDNY4Mj3askiSHVgWbHmMBCs_xpH7GLNgI}',
    dataType: 'json',
    type: 'GET',
    beforeSend: function (request)
    {
      request.setRequestHeader("Authorization", "Bearer "+accessToken);
    },
-   success: function(inbox)
+   success: function(data)
    {
-     this.state.MsgDetail.push(inbox);
-      this.setState({inbox:inbox.messages});
+    // this.state.MsgDetail.push(data);
+     this.setState({mail:data.messages});
+     loadedData=true;
    }.bind(this),
     async:false,
      error: function(xhr, status, err) {
@@ -154,62 +159,6 @@ var GmailBox = React.createClass({
 });
 },
 
-
-sent_items: function()
- {
-     var accessToken = localStorage.getItem('gToken');
-   
-     $.ajax({
-      url: 'https://www.googleapis.com/gmail/v1/users/yeshwanth1206%40gmail.com/messages?labelIds=SENT&maxResults=10&key={AIzaSyDNY4Mj3askiSHVgWbHmMBCs_xpH7GLNgI}',      
-      dataType: 'json',
-      type: 'GET',
-      beforeSend: function (request)
-      {
-        request.setRequestHeader("Authorization", "Bearer "+accessToken);
-      },
-      success: function(msg)
-      {
-        var dply_data = msg.messages
-        for(var key in dply_data)
-        {
-          var id = dply_data[key].id;
-          this.dply_Inbox_Msg(id);
-        }
-        this.setState({sent_allMsge:this.state.sent_MsgDetail});
-        this.state.sent_MsgDetail=[];
-        console.log(id);
-      }.bind(this),
-        error: function(xhr, status, err) {
-        console.error(err.toString());
-      }.bind(this)
-   });
-
- },
-
-
-
- sent: function(msg_id){
-  var accessToken = localStorage.getItem('gToken');
-  $.ajax({
-   url: 'https://www.googleapis.com/gmail/v1/users/yeshwanth1206%40gmail.com/messages/'+msg_id+'?key={AIzaSyDNY4Mj3askiSHVgWbHmMBCs_xpH7GLNgI}',
-   dataType: 'json',
-   type: 'GET',
-   beforeSend: function (request)
-   {
-     request.setRequestHeader("Authorization", "Bearer "+accessToken);
-   },
-   success: function(sent_items)
-   {
-     this.state.MsgDetail.push(sent_items);
-      this.setState({sent_items:sent_items.messages});
-   }.bind(this),
-    async:false,
-     error: function(xhr, status, err) {
-     console.error(err.toString());
-   }.bind(this)
-
-});
-},
 
 
 
@@ -218,41 +167,43 @@ sent_items: function()
  {
    var leftPanel;
    var rightPanel;
-   var rightPanel1;
-
-   if(loadedData){
-     leftPanel =  <Component2left allLabelsData={this.state.allLabelsData} submitLabel={this.displayMessageBasedOnLabel}/>
-     rightPanel=  <Component3right allMsge={this.state.allMsge}/>
-     rightPanel1= <Component4Sent sent_allMsge={this.state.sent_allMsge}/>
-     
-   }
+   
+             if(loadedData)
+             {
+               leftPanel =  <Component2left allLabelsData={this.state.allLabelsData}  labelIds={this.display_All_Msg}/>
+               rightPanel=  <Component3right allMsge={this.state.mail}/>
+              
+               
+             }
 
      return(
        <div className="GmailBox">
            <div className="container-fluid">
              <div className="row">
-                 <div className="col-lg-1">
-                  <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-primary pull-left">LogIn1234</button>
-                  </div>
-                  <div className="col-lg-8 pull-right">
-                    <h2>ReactMails</h2>
-                    <button id="authorize-button" onClick={this.inbox} className="btn btn-primary pull-left">Inbox1236</button>
-                    <button id="authorize-button" onClick={this.sent_items} className="btn btn-primary pull-left">Sent12345</button>
-                  </div>
+                      <div className="col-lg-4">
+                      <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-primary pull-left">LogIn124</button>
+                      </div>
+
+
+                      <div className="col-lg-8 pull-right">
+                        <h2>ReactMails</h2>
+                      </div>
               </div>
-               <div className="row">
-                 <div className="col-lg-4">
-                    {leftPanel}
-                  </div>
-                 <div className="col-lg-8">
-                 {rightPanel}
-                 {rightPanel1}
-                 </div>
+
+              <div className="row">
+                    <div className="col-lg-4">
+                     {leftPanel}
+                    </div>
+                    
+
+                     <div className="col-lg-8">
+                     {rightPanel}
+                     </div>
                </div>
          </div>
      </div>
      );
  }
- });
+  });
 
 module.exports = GmailBox;

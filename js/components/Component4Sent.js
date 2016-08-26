@@ -9,15 +9,12 @@
      var rows=[];
      this.props.sent_allMsge.forEach(function(msg) 
      {
-        var msgReceived,msgFrom,mgsDate;
+        var msgFrom,msgDate;
 
         for(var HI=0; HI <msg.payload.headers.length;HI++)
             {
 
-                if(msg.payload.headers[HI].name=='Received')
-                {
-                    msgReceived=msg.payload.headers[HI].value;
-                }
+                
                 if(msg.payload.headers[HI].name=='From')
                 {
                      msgFrom=msg.payload.headers[HI].value;
@@ -26,12 +23,12 @@
                 }
                 if(msg.payload.headers[HI].name=='Date')
                 {
-                    mgsDate =msg.payload.headers[HI].value;
+                    msgDate =msg.payload.headers[HI].value;
                 }
 
             }
-        rows.push(   <GmailSentChild msgReceived={msgReceived}  msgFrom={msgFrom}   mgsDate={mgsDate} key= {msg.id} />);
-        });
+        rows.push(   <GmailSentChild   msgFrom={msgFrom}   msgDate={msgDate} key= {msg.id} />);
+    });
 
     return (
      <div id="grid4">   
@@ -40,7 +37,7 @@
       <thead>
         <tr>
           <th>From</th>
-          <th>Received</th>
+          
           <th>Date/Time</th>
         </tr>
       </thead>
