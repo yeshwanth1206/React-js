@@ -10,26 +10,13 @@
         return({ all_Msge_Data:[] });
       },
 
-      componentWillMount: function() {
-
-        //console.log("start of componentwill mount");
-
+      componentWillMount: function() { 
         this.allMessages();
-        //console.log("end of component will mount");
-      },
+        },
       componentWillReceiveProps  : function() {
-
-        //console.log("start of componentWillReceiveProps");
-
         this.allMessages();
-        //console.log("end of componentWillReceiveProps");
-      },
-
-
-
-
-
-    allMessages:function(){
+        },
+      allMessages:function(){
      var that=this;
      var rows=[];
      that.props.allMsge.map(function(msg) 
@@ -71,19 +58,13 @@
 
                     }
                 rows.push( {"msgSubject":msgSubject,"msgFrom":msgFrom,"msgDate":msgDate});
-
-                //console.log(requiredData[0].fromValue);
                  that.setState({all_Msge_Data:rows});
-                 //console.log("printing allmessages data's from value");
-                 //console.log(allMessagesData[0].fromValue);
                  loadedData=true;
                  }.bind(that),
                  error: function(xhr, status, err) {
                  console.error(err.toString());
                  }.bind(that)
-            });//end of ajax
-          //console.log("end of ajax")
-          //console.log("iterating the map now after returnstatement")
+            });
           return (
            that
           );
@@ -95,8 +76,6 @@
   render:function()
   {
   
-
-    //console.log("inside right component render")
        var  items = this.state.all_Msge_Data.map(function(i) {
       return (
          <GmailRightChild msgSubject={i.msgSubject} msgFrom={i.msgFrom} msgDate={i.msgDate} />

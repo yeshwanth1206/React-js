@@ -1,12 +1,9 @@
 var React = require('react');
 
-var Component1=require("./Component1");
-var Component1A=require("./Component1A");
+
 var Component2left=require("./Component2left");
 var Component3right=require("./Component3right");
-var Component4Sent=require("./Component4Sent");
-var ComposeComponent=require("./ComposeComponent")
-// var LeftSideBar = require('./LeftSideBar');
+
 var loadedData = false;
 var GmailBox = React.createClass({
  getInitialState: function()
@@ -63,7 +60,7 @@ var GmailBox = React.createClass({
    }, 500);
    this.allLabels();
    this.mail;
-   this.sent_items;
+   
  },
 
 
@@ -181,7 +178,7 @@ var GmailBox = React.createClass({
            <div className="container-fluid">
              <div className="row">
                       <div className="col-lg-4">
-                      <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-primary pull-left">LogIn124</button>
+                      <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-primary pull-left">LogIn12345</button>
                       </div>
 
 
