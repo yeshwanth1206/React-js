@@ -178,7 +178,7 @@ var GmailBox = React.createClass({
            <div className="container-fluid">
              <div className="row">
                       <div className="col-lg-4">
-                      <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-primary pull-left">LogIn12345</button>
+                      <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-primary pull-left">LogIn1234</button>
                       </div>
 
 
