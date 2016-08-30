@@ -13,7 +13,10 @@ Notes:	 Hand coded for Udemy.com
 /* --------------------------------------
    Layout
    -------------------------------------- */
-   
+.active
+  {
+    color: red;
+  }
 
 #authorize-button{
   margin-top: 25px;
@@ -94,7 +97,7 @@ Notes:	 Hand coded for Udemy.com
    #searchinput{
    width: 200px;
   }
-   
+
    .navbar{
     background-color: white;
     border-color: #E7E7E7;
@@ -108,8 +111,8 @@ Notes:	 Hand coded for Udemy.com
 /* --------------------------------------
    Global Styles
    -------------------------------------- */
-  
-   
+
+
 
 /* --------------------------------------
    Media Queries
@@ -120,12 +123,12 @@ Notes:	 Hand coded for Udemy.com
   /*#jumbo {
    background: url("../../images/ajith_very_low.jpg") top center no-repeat;
 }*/
-	
+
 }
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
-  
+
 	#jumbo {
    background:  url("../../images/ajith_very_low.jpg") top center no-repeat;
 }
@@ -136,5 +139,5 @@ Notes:	 Hand coded for Udemy.com
   #jumbo {
    background: url("../../images/ajith_large.jpg") top center no-repeat;
 }
-	
+
 }

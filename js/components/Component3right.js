@@ -37,6 +37,12 @@
                 success: function(msg)
                 {
                 var msgSubject,msgFrom,msgDate;
+                if(typeof msg.payload.parts === 'undefined')      {
+       encodedBody = msg.payload.body.data;
+     }
+     else{
+       encodedBody = that.getHTMLPart(msg.payload.parts);
+     }
 
                 for(var HI=0; HI <msg.payload.headers.length;HI++)
                     {
@@ -72,13 +78,27 @@
     });
 
   },
+  getHTMLPart: function(arr){
+      for(var x = 0; x <= arr.length; x++) {
+        if(typeof arr[x].parts === 'undefined') {
+          if(arr[x].mimeType === 'text/html') {
+            return arr[x].body.data;
+          }
+        }
+        else{
+          return this.getHTMLPart(arr[x].parts);
+        }
+      }
+      return '';
+    },
 
   render:function()
   {
-  
-       var  items = this.state.all_Msge_Data.map(function(i) {
+        var that=this;
+       var  items = this.state.all_Msge_Data.map(function(msg) {
+        
       return (
-         <GmailRightChild msgSubject={i.msgSubject} msgFrom={i.msgFrom} msgDate={i.msgDate} />
+         <GmailRightChild msgSubject={msg.msgSubject} msgFrom={msg.msgFrom} msgDate={msg.msgDate} encodedBodyToChild={encodedBody}/>
             );
           });
 
